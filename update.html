@@ -24,7 +24,7 @@
 [data-theme="slate"]{--bg:#0f172a;--bg2:#1e293b;--bg3:#253346;--bg4:#334155;--acc:#64748b;--acc2:#94a3b8;--acc3:#cbd5e1;--glo:rgba(100,116,139,.3);--abg:rgba(100,116,139,.1);--abo:rgba(100,116,139,.25);--tx:#f8fafc;--tx2:#94a3b8;--tx3:#475569;--bd:rgba(255,255,255,.07);}
 [data-theme="candy"]{--bg:#1a0a2e;--bg2:#250d40;--bg3:#301255;--bg4:#3d1868;--acc:#e879f9;--acc2:#f0abfc;--acc3:#fae8ff;--glo:rgba(232,121,249,.4);--abg:rgba(232,121,249,.12);--abo:rgba(232,121,249,.3);--tx:#fdf4ff;--tx2:#e879f9;--tx3:#a855f7;--bd:rgba(255,255,255,.08);}
 
-/* ── LITE MODE (Ultra Minimal, Structured & Centered) ── */
+/* ── LITE MODE (Ultra Minimal, Structured & Responsive) ── */
 body.lite-mode {
   --bg: #ffffff; --bg2: #ffffff; --bg3: #ffffff; --bg4: #eaeaea;
   --acc: #000000; --acc2: #000000; --acc3: #333333;
@@ -34,7 +34,7 @@ body.lite-mode {
   --ph: 130px;
 }
 
-body.lite-mode .app { grid-template-columns: 320px 1fr 0px !important; }
+body.lite-mode .app { grid-template-columns: clamp(240px, 25vw, 320px) minmax(0, 1fr) 0px !important; }
 
 /* Hide unneeded elements */
 body.lite-mode .panel,
@@ -55,10 +55,10 @@ body.lite-mode .pl-r,
 body.lite-mode #btn-shuf,
 body.lite-mode #btn-rep,
 body.lite-mode #fav-btn,
-body.lite-mode .ti > div:nth-child(4), /* The fav wrapper div */
+body.lite-mode .ti > div:nth-child(4),
 body.lite-mode .ti-dur,
 body.lite-mode .abt,
-body.lite-mode .ti-nw, /* Hides left padding block for tracks */
+body.lite-mode .ti-nw,
 body.lite-mode .set-sec .theme-grid { display: none !important; }
 
 /* Centered Player Bar */
@@ -69,10 +69,14 @@ body.lite-mode .player {
   padding: 0 48px; 
   border-top: 3px solid #000; 
   background: #fff; 
+  gap: 16px;
+  min-width: 0;
 }
-body.lite-mode .now-pl { flex: 1; min-width: 0; }
-body.lite-mode .pl-ctr { flex: 1; display: flex; flex-direction: column; align-items: center; }
-body.lite-mode .player::after { content: ''; flex: 1; } /* Invisible 3rd column ensures .pl-ctr stays dead center */
+body.lite-mode .now-pl { flex: 1; min-width: 0; display: flex; align-items: center; gap: 16px; }
+body.lite-mode .now-info { min-width: 0; flex: 1; }
+body.lite-mode .pl-ctr { flex: 1; display: flex; flex-direction: column; align-items: center; min-width: 0; }
+body.lite-mode .player::after { content: ''; flex: 1; display: block; } /* Invisible 3rd column */
+body.lite-mode .prog-row { min-width: 0; width: 100%; max-width: 600px; }
 
 /* Centered Main Content */
 body.lite-mode .mhdr { 
@@ -83,7 +87,7 @@ body.lite-mode .mhdr {
   border-bottom: none; 
 }
 body.lite-mode .sec-title { 
-  font-size: 48px; 
+  font-size: clamp(32px, 4vw, 48px); 
   font-weight: 800; 
   letter-spacing: -0.03em; 
   text-align: center; 
@@ -91,6 +95,9 @@ body.lite-mode .sec-title {
   border-bottom: 4px solid #000; 
   padding-bottom: 24px; 
   border-radius: 2px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 body.lite-mode .tlist { 
   padding: 32px 48px 160px; 
@@ -100,56 +107,71 @@ body.lite-mode .tlist {
 }
 
 /* Controls */
-body.lite-mode .play-btn { width: 80px; height: 80px; border: 3px solid #000; background: #000; color: #fff; box-shadow: none; }
+body.lite-mode .play-btn { width: 80px; height: 80px; border: 3px solid #000; background: #000; color: #fff; box-shadow: none; flex-shrink: 0; }
 body.lite-mode .play-btn svg { width: 36px; height: 36px; fill: #fff; }
 body.lite-mode .play-btn:hover { background: #fff; color: #000; }
 body.lite-mode .play-btn:hover svg { fill: #000; }
-body.lite-mode .ctrl { width: 64px; height: 64px; border: 3px solid transparent; color: #000; }
+body.lite-mode .ctrl { width: 64px; height: 64px; border: 3px solid transparent; color: #000; flex-shrink: 0; }
 body.lite-mode .ctrl:hover { border: 3px solid #000; background: #fff; }
 body.lite-mode .ctrl svg { width: 32px; height: 32px; }
 body.lite-mode .prog { height: 8px; border-radius: 4px; border: 2px solid #000; background: #fff; --pct: 0%; background: linear-gradient(to right, #000 var(--pct), #fff var(--pct)); }
 body.lite-mode .prog:hover { height: 12px; }
 body.lite-mode .prog::-webkit-slider-thumb { width: 22px; height: 22px; border: 3px solid #000; background: #fff; box-shadow: none !important; }
 body.lite-mode .tm { font-size: 16px; font-weight: 700; min-width: 52px; color: #000; }
-body.lite-mode .prog-row { max-width: 600px; width: 100%; }
 
-body.lite-mode .now-art { width: 88px; height: 88px; border-radius: 16px; font-size: 32px; border: 3px solid #000; background: #fff; color: #000; }
-body.lite-mode .now-tn { font-size: 24px; font-weight: 800; margin-bottom: 6px; color: #000; }
-body.lite-mode .now-ta { font-size: 18px; font-weight: 500; color: #555; }
+body.lite-mode .now-art { width: clamp(64px, 6vw, 88px); height: clamp(64px, 6vw, 88px); border-radius: 16px; font-size: 32px; border: 3px solid #000; background: #fff; color: #000; flex-shrink: 0; }
+body.lite-mode .now-tn { font-size: clamp(18px, 2vw, 24px); font-weight: 800; margin-bottom: 6px; color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.lite-mode .now-ta { font-size: clamp(14px, 1.5vw, 18px); font-weight: 500; color: #555; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* Sidebar */
-body.lite-mode .sb { border-right: 3px solid #000; padding: 32px 24px; background: #fff; display: flex; flex-direction: column; }
+body.lite-mode .sb { border-right: 3px solid #000; padding: clamp(16px, 2vw, 32px) clamp(12px, 1.5vw, 24px); background: #fff; display: flex; flex-direction: column; }
 body.lite-mode .sb-top { padding: 0; }
 body.lite-mode .sb-scroll { padding: 0; }
 body.lite-mode .sb-btm { border-top: none; padding: 0; }
-body.lite-mode .sb-btm::before { content: ''; display: block; height: 4px; background: #000; border-radius: 2px; margin: 0 0 32px 0; } /* Divider above settings */
+body.lite-mode .sb-btm::before { content: ''; display: block; height: 4px; background: #000; border-radius: 2px; margin: 0 0 32px 0; } 
 
-body.lite-mode .srch input { padding: 18px 16px 18px 52px; font-size: 16px; font-weight: 600; border-radius: 16px; border: 3px solid #000; color: #000; background: #fff; margin-bottom: 12px; }
+body.lite-mode .srch input { padding: 16px 12px 16px 48px; font-size: 15px; font-weight: 600; border-radius: 12px; border: 3px solid #000; color: #000; background: #fff; margin-bottom: 12px; }
 body.lite-mode .srch input::placeholder { color: #888; font-weight: 500; }
-body.lite-mode .srch-ic { width: 20px; height: 20px; left: 18px; color: #000; }
-body.lite-mode .logo { font-size: 28px; margin-bottom: 32px; color: #000; -webkit-text-fill-color: #000; justify-content: center; }
-body.lite-mode .logo-icon { width: 32px; height: 32px; fill: #000; }
+body.lite-mode .srch-ic { width: 20px; height: 20px; left: 16px; color: #000; }
+body.lite-mode .logo { font-size: clamp(22px, 2vw, 28px); margin-bottom: 32px; color: #000; -webkit-text-fill-color: #000; justify-content: center; }
+body.lite-mode .logo-icon { width: clamp(24px, 2vw, 32px); height: clamp(24px, 2vw, 32px); fill: #000; }
 
-body.lite-mode .nbtn { padding: 20px 24px; font-size: 19px; font-weight: 700; border-radius: 16px; margin-bottom: 14px; border: 3px solid #000; background: #fff; color: #000; justify-content: center; text-align: center; }
-body.lite-mode .nbtn svg { width: 24px; height: 24px; margin-right: 12px; }
+body.lite-mode .nbtn { padding: 18px 20px; font-size: clamp(16px, 1.5vw, 19px); font-weight: 700; border-radius: 12px; margin-bottom: 14px; border: 3px solid #000; background: #fff; color: #000; justify-content: center; text-align: center; }
+body.lite-mode .nbtn svg { width: 24px; height: 24px; margin-right: 12px; flex-shrink: 0; }
 body.lite-mode .nbtn.on { background: #000; color: #fff; }
-body.lite-mode .add-btn { padding: 22px 24px; font-size: 19px; border-radius: 16px; border: 3px solid #000; background: #000; color: #fff; box-shadow: none; width: 100%; margin-bottom: 14px; }
+body.lite-mode .add-btn { padding: 20px 20px; font-size: clamp(16px, 1.5vw, 19px); border-radius: 12px; border: 3px solid #000; background: #000; color: #fff; box-shadow: none; width: 100%; margin-bottom: 14px; }
 body.lite-mode .add-btn:hover { background: #fff; color: #000; }
-body.lite-mode .sec-btn { padding: 20px 24px; font-size: 18px; font-weight: 700; border-radius: 16px; border: 3px solid #000; background: #fff; color: #000; width: 100%; }
+body.lite-mode .sec-btn { padding: 18px 20px; font-size: clamp(15px, 1.5vw, 18px); font-weight: 700; border-radius: 12px; border: 3px solid #000; background: #fff; color: #000; width: 100%; }
 body.lite-mode .sec-btn:hover { background: #000; color: #fff; }
 
 /* Track Items (Bordered & Structured) */
-body.lite-mode .ti { display: grid; grid-template-columns: auto 1fr; align-items: center; padding: 18px 24px; border-radius: 16px; gap: 24px; border: 3px solid #000; margin-bottom: 16px; background: #fff; cursor: pointer; }
+body.lite-mode .ti { display: grid; grid-template-columns: min-content 1fr; align-items: center; padding: 16px 24px; border-radius: 16px; gap: 20px; border: 3px solid #000; margin-bottom: 16px; background: #fff; cursor: pointer; min-width: 0; }
 body.lite-mode .ti:hover { background: #fafafa; transform: translateX(4px); transition: transform 0.2s ease; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
 body.lite-mode .ti.on { background: #000; border-color: #000; }
 body.lite-mode .ti.on .tnm { color: #fff; }
 body.lite-mode .ti.on .tart { color: #ccc; }
 body.lite-mode .ti.on .ti-art { border-color: #fff; background: #222; color: #fff; }
 body.lite-mode .ti.on .ti-art svg { color: #fff; }
-body.lite-mode .ti-art { width: 68px; height: 68px; border-radius: 12px; font-size: 26px; border: 3px solid #000; background: #fff; color: #000; }
-body.lite-mode .ti-info { text-align: left; }
-body.lite-mode .tnm { font-size: 21px; font-weight: 700; margin-bottom: 4px; color: #000; }
-body.lite-mode .tart { font-size: 16px; font-weight: 600; color: #666; }
+body.lite-mode .ti-art { width: clamp(54px, 5vw, 68px); height: clamp(54px, 5vw, 68px); border-radius: 12px; font-size: 26px; border: 3px solid #000; background: #fff; color: #000; flex-shrink: 0; }
+body.lite-mode .ti-info { text-align: left; min-width: 0; }
+body.lite-mode .tnm { font-size: clamp(18px, 2vw, 21px); font-weight: 700; margin-bottom: 4px; color: #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.lite-mode .tart { font-size: clamp(14px, 1.5vw, 16px); font-weight: 600; color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Zoom & Mobile safeguards */
+@media (max-width: 1000px) {
+  body.lite-mode .player { padding: 0 24px; justify-content: space-between; }
+  body.lite-mode .mhdr { padding: 32px 24px 16px; }
+  body.lite-mode .tlist { padding: 16px 24px 140px; }
+  body.lite-mode .ti { padding: 14px 16px; gap: 16px; }
+}
+
+@media (max-width: 850px) {
+  body.lite-mode .player::after { display: none; } /* Drop the invisible flex spacer */
+  body.lite-mode .player { justify-content: flex-start; }
+  body.lite-mode .now-pl { max-width: 45%; }
+  body.lite-mode .pl-ctr { align-items: flex-end; }
+  body.lite-mode .prog-row { justify-content: flex-end; }
+}
 
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -616,7 +638,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
   <div class="set-sec"><div class="set-t">Theme</div><div class="theme-grid" id="theme-grid"></div></div>
   <div class="set-sec">
     <div class="set-t">Display</div>
-    <div class="set-row"><div><div class="set-lbl">Spooftify Ultra Lite Mode</div><div class="set-sub">Radically simplify the interface, hide most buttons</div></div><label class="tog"><input type="checkbox" id="tog-lite"><div class="tog-t"></div></label></div>
+    <div class="set-row"><div><div class="set-lbl">Lite Mode</div><div class="set-sub">Simplify the interface, hide most buttons</div></div><label class="tog"><input type="checkbox" id="tog-lite"><div class="tog-t"></div></label></div>
     <div class="set-row"><div><div class="set-lbl">Show track numbers</div></div><label class="tog"><input type="checkbox" id="tog-num" checked><div class="tog-t"></div></label></div>
     <div class="set-row"><div><div class="set-lbl">Compact mode</div><div class="set-sub">Smaller track rows</div></div><label class="tog"><input type="checkbox" id="tog-cmp"><div class="tog-t"></div></label></div>
   </div>
