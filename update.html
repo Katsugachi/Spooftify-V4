@@ -24,6 +24,134 @@
 [data-theme="slate"]{--bg:#0f172a;--bg2:#1e293b;--bg3:#253346;--bg4:#334155;--acc:#64748b;--acc2:#94a3b8;--acc3:#cbd5e1;--glo:rgba(100,116,139,.3);--abg:rgba(100,116,139,.1);--abo:rgba(100,116,139,.25);--tx:#f8fafc;--tx2:#94a3b8;--tx3:#475569;--bd:rgba(255,255,255,.07);}
 [data-theme="candy"]{--bg:#1a0a2e;--bg2:#250d40;--bg3:#301255;--bg4:#3d1868;--acc:#e879f9;--acc2:#f0abfc;--acc3:#fae8ff;--glo:rgba(232,121,249,.4);--abg:rgba(232,121,249,.12);--abo:rgba(232,121,249,.3);--tx:#fdf4ff;--tx2:#e879f9;--tx3:#a855f7;--bd:rgba(255,255,255,.08);}
 
+/* ── LITE MODE (Ultra Minimal, Structured & Centered) ── */
+body.lite-mode {
+  --bg: #ffffff; --bg2: #ffffff; --bg3: #ffffff; --bg4: #eaeaea;
+  --acc: #000000; --acc2: #000000; --acc3: #333333;
+  --glo: transparent; --abg: rgba(0,0,0,0.06); --abo: #000000;
+  --tx: #000000; --tx2: #444444; --tx3: #888888;
+  --bd: #000000; --hov: rgba(0,0,0,0.04);
+  --ph: 130px;
+}
+
+body.lite-mode .app { grid-template-columns: 320px 1fr 0px !important; }
+
+/* Hide unneeded elements */
+body.lite-mode .panel,
+body.lite-mode .sort-row,
+body.lite-mode .stats,
+body.lite-mode .hdr-acts,
+body.lite-mode .nlbl,
+body.lite-mode #btn-rec,
+body.lite-mode #pl-list,
+body.lite-mode #btn-cpl,
+body.lite-mode #btn-more,
+body.lite-mode .how-box,
+body.lite-mode .sb-scroll > div:nth-child(2),
+body.lite-mode .sb-scroll > div:nth-child(3),
+body.lite-mode .btn-row .sec-btn:not(#btn-set),
+body.lite-mode #btn-clr,
+body.lite-mode .pl-r,
+body.lite-mode #btn-shuf,
+body.lite-mode #btn-rep,
+body.lite-mode #fav-btn,
+body.lite-mode .ti > div:nth-child(4), /* The fav wrapper div */
+body.lite-mode .ti-dur,
+body.lite-mode .abt,
+body.lite-mode .ti-nw, /* Hides left padding block for tracks */
+body.lite-mode .set-sec .theme-grid { display: none !important; }
+
+/* Centered Player Bar */
+body.lite-mode .player { 
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 48px; 
+  border-top: 3px solid #000; 
+  background: #fff; 
+}
+body.lite-mode .now-pl { flex: 1; min-width: 0; }
+body.lite-mode .pl-ctr { flex: 1; display: flex; flex-direction: column; align-items: center; }
+body.lite-mode .player::after { content: ''; flex: 1; } /* Invisible 3rd column ensures .pl-ctr stays dead center */
+
+/* Centered Main Content */
+body.lite-mode .mhdr { 
+  padding: 56px 48px 24px; 
+  max-width: 1000px; 
+  margin: 0 auto; 
+  width: 100%; 
+  border-bottom: none; 
+}
+body.lite-mode .sec-title { 
+  font-size: 48px; 
+  font-weight: 800; 
+  letter-spacing: -0.03em; 
+  text-align: center; 
+  width: 100%; 
+  border-bottom: 4px solid #000; 
+  padding-bottom: 24px; 
+  border-radius: 2px; 
+}
+body.lite-mode .tlist { 
+  padding: 32px 48px 160px; 
+  max-width: 1000px; 
+  margin: 0 auto; 
+  width: 100%; 
+}
+
+/* Controls */
+body.lite-mode .play-btn { width: 80px; height: 80px; border: 3px solid #000; background: #000; color: #fff; box-shadow: none; }
+body.lite-mode .play-btn svg { width: 36px; height: 36px; fill: #fff; }
+body.lite-mode .play-btn:hover { background: #fff; color: #000; }
+body.lite-mode .play-btn:hover svg { fill: #000; }
+body.lite-mode .ctrl { width: 64px; height: 64px; border: 3px solid transparent; color: #000; }
+body.lite-mode .ctrl:hover { border: 3px solid #000; background: #fff; }
+body.lite-mode .ctrl svg { width: 32px; height: 32px; }
+body.lite-mode .prog { height: 8px; border-radius: 4px; border: 2px solid #000; background: #fff; --pct: 0%; background: linear-gradient(to right, #000 var(--pct), #fff var(--pct)); }
+body.lite-mode .prog:hover { height: 12px; }
+body.lite-mode .prog::-webkit-slider-thumb { width: 22px; height: 22px; border: 3px solid #000; background: #fff; box-shadow: none !important; }
+body.lite-mode .tm { font-size: 16px; font-weight: 700; min-width: 52px; color: #000; }
+body.lite-mode .prog-row { max-width: 600px; width: 100%; }
+
+body.lite-mode .now-art { width: 88px; height: 88px; border-radius: 16px; font-size: 32px; border: 3px solid #000; background: #fff; color: #000; }
+body.lite-mode .now-tn { font-size: 24px; font-weight: 800; margin-bottom: 6px; color: #000; }
+body.lite-mode .now-ta { font-size: 18px; font-weight: 500; color: #555; }
+
+/* Sidebar */
+body.lite-mode .sb { border-right: 3px solid #000; padding: 32px 24px; background: #fff; display: flex; flex-direction: column; }
+body.lite-mode .sb-top { padding: 0; }
+body.lite-mode .sb-scroll { padding: 0; }
+body.lite-mode .sb-btm { border-top: none; padding: 0; }
+body.lite-mode .sb-btm::before { content: ''; display: block; height: 4px; background: #000; border-radius: 2px; margin: 0 0 32px 0; } /* Divider above settings */
+
+body.lite-mode .srch input { padding: 18px 16px 18px 52px; font-size: 16px; font-weight: 600; border-radius: 16px; border: 3px solid #000; color: #000; background: #fff; margin-bottom: 12px; }
+body.lite-mode .srch input::placeholder { color: #888; font-weight: 500; }
+body.lite-mode .srch-ic { width: 20px; height: 20px; left: 18px; color: #000; }
+body.lite-mode .logo { font-size: 28px; margin-bottom: 32px; color: #000; -webkit-text-fill-color: #000; justify-content: center; }
+body.lite-mode .logo-icon { width: 32px; height: 32px; fill: #000; }
+
+body.lite-mode .nbtn { padding: 20px 24px; font-size: 19px; font-weight: 700; border-radius: 16px; margin-bottom: 14px; border: 3px solid #000; background: #fff; color: #000; justify-content: center; text-align: center; }
+body.lite-mode .nbtn svg { width: 24px; height: 24px; margin-right: 12px; }
+body.lite-mode .nbtn.on { background: #000; color: #fff; }
+body.lite-mode .add-btn { padding: 22px 24px; font-size: 19px; border-radius: 16px; border: 3px solid #000; background: #000; color: #fff; box-shadow: none; width: 100%; margin-bottom: 14px; }
+body.lite-mode .add-btn:hover { background: #fff; color: #000; }
+body.lite-mode .sec-btn { padding: 20px 24px; font-size: 18px; font-weight: 700; border-radius: 16px; border: 3px solid #000; background: #fff; color: #000; width: 100%; }
+body.lite-mode .sec-btn:hover { background: #000; color: #fff; }
+
+/* Track Items (Bordered & Structured) */
+body.lite-mode .ti { display: grid; grid-template-columns: auto 1fr; align-items: center; padding: 18px 24px; border-radius: 16px; gap: 24px; border: 3px solid #000; margin-bottom: 16px; background: #fff; cursor: pointer; }
+body.lite-mode .ti:hover { background: #fafafa; transform: translateX(4px); transition: transform 0.2s ease; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
+body.lite-mode .ti.on { background: #000; border-color: #000; }
+body.lite-mode .ti.on .tnm { color: #fff; }
+body.lite-mode .ti.on .tart { color: #ccc; }
+body.lite-mode .ti.on .ti-art { border-color: #fff; background: #222; color: #fff; }
+body.lite-mode .ti.on .ti-art svg { color: #fff; }
+body.lite-mode .ti-art { width: 68px; height: 68px; border-radius: 12px; font-size: 26px; border: 3px solid #000; background: #fff; color: #000; }
+body.lite-mode .ti-info { text-align: left; }
+body.lite-mode .tnm { font-size: 21px; font-weight: 700; margin-bottom: 4px; color: #000; }
+body.lite-mode .tart { font-size: 16px; font-weight: 600; color: #666; }
+
+
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow:hidden;transition:background .35s,color .35s;}
 
@@ -252,7 +380,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .sc-key{background:var(--bg4);border:1px solid var(--bd);border-radius:3px;font-size:10px;font-weight:700;color:var(--tx);padding:2px 5px;font-family:monospace;}
 
 /* ── TOAST ── */
-.toast-wrap{position:fixed;bottom:94px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:6px;}
+.toast-wrap{position:fixed;bottom:134px;right:16px;z-index:9999;display:flex;flex-direction:column;gap:6px;}
 .toast{background:var(--bg2);border:1px solid var(--bd);border-radius:8px;padding:9px 13px;font-size:12px;color:var(--tx);box-shadow:0 6px 22px rgba(0,0,0,.4);animation:ti .22s ease,to .22s ease 2.78s forwards;max-width:270px;}
 @keyframes ti{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
 @keyframes to{from{opacity:1}to{opacity:0}}
@@ -283,7 +411,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 <aside class="sb">
   <div class="sb-top">
     <div class="logo"><svg class="logo-icon" width="20" height="20" viewBox="0 0 24 24" fill="var(--acc2)" style="-webkit-text-fill-color:initial;"><path d="M12 2C6.48 2 2 6.48 2 12v4c0 1.1.9 2 2 2h1c1.1 0 2-.9 2-2v-3c0-1.1-.9-2-2-2H4v-1c0-4.42 3.58-8 8-8s8 3.58 8 8v1h-1c-1.1 0-2 .9-2 2v3c0 1.1.9 2 2 2h1c1.1 0 2-.9 2-2v-4c0-5.52-4.48-10-10-10z"/></svg>Spooftify</div>
-    <div class="srch"><svg class="srch-ic" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg><input type="text" id="srch-in" placeholder="Search your library..."></div>
+    <div class="srch"><svg class="srch-ic" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 14z"/></svg><input type="text" id="srch-in" placeholder="Search your library..."></div>
     <div class="sort-row">
       <button class="srt on" data-sort="default">Recent</button>
       <button class="srt" data-sort="name">Name</button>
@@ -487,15 +615,16 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
   <div class="m-title">Settings</div>
   <div class="set-sec"><div class="set-t">Theme</div><div class="theme-grid" id="theme-grid"></div></div>
   <div class="set-sec">
+    <div class="set-t">Display</div>
+    <div class="set-row"><div><div class="set-lbl">Spooftify Ultra Lite Mode</div><div class="set-sub">Radically simplify the interface, hide most buttons</div></div><label class="tog"><input type="checkbox" id="tog-lite"><div class="tog-t"></div></label></div>
+    <div class="set-row"><div><div class="set-lbl">Show track numbers</div></div><label class="tog"><input type="checkbox" id="tog-num" checked><div class="tog-t"></div></label></div>
+    <div class="set-row"><div><div class="set-lbl">Compact mode</div><div class="set-sub">Smaller track rows</div></div><label class="tog"><input type="checkbox" id="tog-cmp"><div class="tog-t"></div></label></div>
+  </div>
+  <div class="set-sec">
     <div class="set-t">Playback</div>
     <div class="set-row"><div><div class="set-lbl">Crossfade</div><div class="set-sub">Smooth track transitions</div></div><label class="tog"><input type="checkbox" id="tog-cf"><div class="tog-t"></div></label></div>
     <div class="set-row" id="cf-row" style="display:none;"><div class="set-lbl" style="font-size:11.5px;">Duration</div><div style="display:flex;align-items:center;gap:6px;"><input type="range" min="1" max="10" value="3" id="cf-dur" style="width:80px;" class="vol-bar"><span id="cf-lbl" style="font-size:10.5px;color:var(--acc2);">3s</span></div></div>
     <div class="set-row"><div><div class="set-lbl">Auto-advance</div><div class="set-sub">Auto play next track</div></div><label class="tog"><input type="checkbox" id="tog-aa" checked><div class="tog-t"></div></label></div>
-  </div>
-  <div class="set-sec">
-    <div class="set-t">Display</div>
-    <div class="set-row"><div><div class="set-lbl">Show track numbers</div></div><label class="tog"><input type="checkbox" id="tog-num" checked><div class="tog-t"></div></label></div>
-    <div class="set-row"><div><div class="set-lbl">Compact mode</div><div class="set-sub">Smaller track rows</div></div><label class="tog"><input type="checkbox" id="tog-cmp"><div class="tog-t"></div></label></div>
   </div>
   <div class="set-sec">
     <div class="set-t">System</div>
@@ -508,24 +637,12 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 </div></div>
 
 <div class="modal" id="m-upd"><div class="mbox">
-  <div class="m-title">What's New in V4</div>
-  <div class="upd-ver"><div class="upd-num">Spooftify V4.0</div><div class="upd-sub">Massive upgrade — February 2026</div></div>
+  <div class="m-title">What's New in V4.2.1</div>
+  <div class="upd-ver"><div class="upd-num">Spooftify V4.2.1</div><div class="upd-sub">New Features — 2026</div></div>
   <div class="feat-list">
+    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Spooftify Ultra Lite Mode</div><div class="feat-d">Toggle an incredibly minimal monochrome interface via Settings. Bigger buttons, fewer distractions.</div></div></div>
     <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">10 Beautiful Themes</div><div class="feat-d">Purple, Spotify, Rose, Ocean, Amber, Mint, Paper, Synthwave, Slate, Candy</div></div></div>
     <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">7-Band Equalizer</div><div class="feat-d">Fine-tune sound with presets: Bass Boost, Lo-Fi, Vocal, Rock, Pop, Classical</div></div></div>
-    <div class="feat"><div class="feat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div><div><div class="feat-n">Favourites</div><div class="feat-d">Star tracks and view a dedicated Favourites section</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Custom Cover Art</div><div class="feat-d">Add your own artwork images to any track</div></div></div>
-    <div class="feat"><div class="feat-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div><div><div class="feat-n">Artist Names + Edit</div><div class="feat-d">Add and edit artist names per track</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Queue View</div><div class="feat-d">See what's coming next in the side panel</div></div></div>
-    <div class="feat"><div class="feat-ico">●</div><div><div class="feat-n">Sleep Timer</div><div class="feat-d">Set music to stop after 15, 30, 45 or 60 minutes</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Right-Click Context Menu</div><div class="feat-d">Quick actions: play next, fav, edit, add to playlist, delete</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Keyboard Shortcuts</div><div class="feat-d">Space, arrows, M, S, R, L, F, I, P and more</div></div></div>
-    <div class="feat"><div class="feat-ico">⇄</div><div><div class="feat-n">Crossfade</div><div class="feat-d">Smooth transitions between tracks (Settings → Crossfade)</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Search & Sort</div><div class="feat-d">Filter by name/artist, sort by recent, name, duration or favourites</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Drag & Drop Import</div><div class="feat-d">Drop audio files anywhere on the page to import</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">Library Stats</div><div class="feat-d">See total tracks, total duration, and favourite count</div></div></div>
-    <div class="feat"><div class="feat-ico">○</div><div><div class="feat-n">Recently Played</div><div class="feat-d">Quick access to your last 20 tracks</div></div></div>
-    <div class="feat"><div class="feat-ico">■</div><div><div class="feat-n">New Design Language</div><div class="feat-d">Syne + DM Sans fonts, refined spacing, animated EQ bars, smooth everything</div></div></div>
   </div>
   <div class="m-btns" style="margin-top:16px;"><button class="add-btn" id="btn-upd-c" style="padding:9px 22px;">Got it!</button></div>
 </div></div>
@@ -559,7 +676,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 </div></div>
 
 <script>
-const APP_VERSION = '4.0.1'; 
+const APP_VERSION = '4.2.1'; 
 const THEMES = [
   {id:'default',  nm:'Spooftify', dc:'Purple Night',  bg:'#0a0a0f', ac:'#a855f7', bg2:'#18181f', tx:'#f1f0ff', tx2:'rgba(241,240,255,0.45)'},
   {id:'spotify',  nm:'Spotify',   dc:'OG Green',      bg:'#121212', ac:'#1db954', bg2:'#181818', tx:'#ffffff', tx2:'rgba(255,255,255,0.45)'},
@@ -599,6 +716,7 @@ class Spooftify {
     this.muted = false;
     this.speed = 1.0;
     this.theme = 'default';
+    this.liteMode = false;
     this.editId = null;
     this.vidRemove = false;
     this.artRemove = false;
@@ -670,6 +788,7 @@ class Spooftify {
   loadSettings() {
     const s = JSON.parse(localStorage.getItem('spfy4') || '{}');
     this.theme      = s.theme || 'spotify';
+    this.liteMode   = s.lite ?? false;
     this.vol        = s.vol ?? 0.8;
     this.shuffle    = s.shuffle ?? false;
     this.repeat     = s.repeat ?? 'off';
@@ -680,20 +799,24 @@ class Spooftify {
     this.compact    = s.compact ?? false;
     this.eqVals     = s.eq || [...EQ_PRESETS.flat];
     this.recent     = s.recent || [];
+    
     document.getElementById('vol').value = this.vol;
     document.getElementById('audio').volume = this.vol;
+    document.getElementById('tog-lite').checked = this.liteMode;
     document.getElementById('tog-cf').checked = this.crossfade;
     document.getElementById('tog-aa').checked = this.autoAdv;
     document.getElementById('tog-num').checked = this.showNums;
     document.getElementById('tog-cmp').checked = this.compact;
     document.getElementById('cf-dur').value = this.crossfadeDur;
     document.getElementById('cf-lbl').textContent = this.crossfadeDur + 's';
+    
+    if (this.liteMode) document.body.classList.add('lite-mode');
     if (this.crossfade) document.getElementById('cf-row').style.display = 'flex';
   }
 
   save() {
     localStorage.setItem('spfy4', JSON.stringify({
-      theme:this.theme, vol:this.vol, shuffle:this.shuffle, repeat:this.repeat,
+      theme:this.theme, lite:this.liteMode, vol:this.vol, shuffle:this.shuffle, repeat:this.repeat,
       crossfade:this.crossfade, cfDur:this.crossfadeDur, autoAdv:this.autoAdv,
       nums:this.showNums, compact:this.compact, eq:this.eqVals,
       recent:this.recent.slice(0,20),
@@ -1068,9 +1191,17 @@ class Spooftify {
         <button class="abt del-abt" data-del="${t.id}" data-i="${i}" title="Delete"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>`;
 
       li.querySelector('.ti-info').onclick = () => this.playTrack(i);
-      li.querySelector('.ti-pp').onclick = () => this.playTrack(i);
-      li.querySelector(`[data-edit]`).onclick = e => { e.stopPropagation(); this.openEdit(t.id); };
-      li.querySelector(`[data-del]`).onclick = e => {
+      if(li.querySelector('.ti-pp')) li.querySelector('.ti-pp').onclick = () => this.playTrack(i);
+      
+      // In Lite Mode, click the whole track to play
+      li.onclick = e => {
+        if(document.body.classList.contains('lite-mode') && !e.target.closest('button')) {
+          this.playTrack(i);
+        }
+      };
+
+      if(li.querySelector(`[data-edit]`)) li.querySelector(`[data-edit]`).onclick = e => { e.stopPropagation(); this.openEdit(t.id); };
+      if(li.querySelector(`[data-del]`)) li.querySelector(`[data-del]`).onclick = e => {
         e.stopPropagation();
         if (this.curPlaylist) this.removeFromPl(t.id);
         else if (confirm(`Delete "${t.name}"?`)) this.deleteTrack(t.id);
@@ -1480,6 +1611,8 @@ class Spooftify {
     document.getElementById('btn-clr-v').onclick = () => { this.vidRemove=true; document.getElementById('e-video').value=''; document.getElementById('vid-stat').textContent='Video removed'; };
     document.getElementById('btn-clr-a').onclick = () => { this.artRemove=true; document.getElementById('e-art').value=''; document.getElementById('art-stat').textContent='Art removed'; };
     
+    // Settings toggles
+    document.getElementById('tog-lite').onchange = e => { this.liteMode=e.target.checked; document.body.classList.toggle('lite-mode', this.liteMode); this.save(); };
     document.getElementById('tog-cf').onchange = e => { this.crossfade=e.target.checked; document.getElementById('cf-row').style.display=this.crossfade?'flex':'none'; this.save(); };
     document.getElementById('cf-dur').oninput = e => { this.crossfadeDur=+e.target.value; document.getElementById('cf-lbl').textContent=this.crossfadeDur+'s'; this.save(); };
     document.getElementById('tog-aa').onchange = e => { this.autoAdv=e.target.checked; this.save(); };
